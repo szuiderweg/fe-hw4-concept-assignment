@@ -1,0 +1,259 @@
+/* ---table of content---*/
+/*todo: fill table of content when page is completed*/
+/*todo translate all comments to English*/
+
+
+/*-------------------------------------------------------------------------------*/
+/*---1 -imports and reset-----*/
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap');  /* font Merriweather and roboto */
+
+
+/*CSS reset*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+/*---------------------------------------------------------------------------------*/
+/*---- 2 declaration of variables  ------*/
+
+:root { /* colors */
+    --chrysler: #5722CD; /* violet: heading, links */
+    --blue: #4845E4; /* blue: background header and form */
+    --rose: #ED4385; /* pink: buttons */
+    --black: #0C0C0C; /* black: standard texts */
+    --magnolia: #F2F0FF; /* very light violet: floating text, example "hello","services" except for:  */
+    --antiflash: #F3F6F9;/* light grey: projects background color */
+    --gray: #7A7A7A;/* gray: service tile text */
+}
+
+/*--------------------------------------------------------------------------------*/
+/*----3 Global styles  */
+
+button {
+    background-color: var(--rose);
+    color: var(--magnolia);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    padding: 1.5em 2em;
+    border-radius: 4em;
+    border-style: none;
+    box-shadow: 0 0.5rem 0.5rem #3D188C;/* shadow color is the blue background color with lower brightness*/
+}
+
+
+
+/*--------------------------------------------------------------------------------*/
+/*---4 general typography-----*/
+
+html {/*default font family and size*/
+    font-family: 'roboto', sans-serif;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h4, h5, h6 {
+    font-family: 'merriweather',serif;}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+a {
+    color: var(--chrysler);
+    text-decoration: none;
+}
+/*-------------------------------------------------------------------------------*/
+/*---5  layout ----*/
+/*todo: padding etc verplaatsen naar area styling*/
+/*general layout strategy: each part of the page have their own set of outer-inner containers.The outer containers in row direction all belong to the outer class. The inner container belong to the inner-class and are in column direction.
+
+each section can have their own subcontainers*/
+/*the sections are combined in a single column page using their default behaviour as html block elements*/
+body {
+    width: 100vw;
+    /*border: 6px solid lightgray;*/
+}
+    /*outer container flexbox that is repeated for every section*/
+    .outer {
+        border: 4px solid grey;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+    }
+        /*layout of header section*/
+        .inner-header {
+            /*inner container must fill the full width of the screen for the navigation bar*/
+            flex-basis: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 5em;
+            align-items: center;
+        }
+
+
+            /*  move nav bar to top right inside inner container       */
+            nav {
+                align-self: flex-end;
+            }
+
+                /* make the unordered list with navigation items into a flex container   */
+                .inner-header ul {
+                    display: flex;
+                    flex-direction: row;
+                }
+
+            .header-center-block {
+                width: 60%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+        /* ---- layout of intro section*/
+                /*no special layout, single flexbox was sufficient*/
+
+        /* ----- layout of project section -----*/
+        #inner-projects {
+            flex-basis: 93%;
+        }
+            #inner-projects article {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding-top:5em;
+            }
+            /* reverse order of elements inside even numbered articles*/
+            #inner-projects article:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+                .project-description {
+                    display: flex;
+                    flex-basis: 28%;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                    flex-direction: column;
+                    justify-content: center;
+                    row-gap: 2em;
+                    padding-inline: 2em;
+                }
+
+                .project-image-wrapper img{
+                    width: 100%;
+                }
+
+                .project-image-wrapper {
+                    flex-basis: 55%;
+                    flex-grow: 0;
+                    flex-shrink: 1;
+                }
+    /*layout of services section    */
+    #inner-services {
+        flex-basis: 100em;/* fixed initial width to limit the number of tiles to 3 per row. 100 em is approximately 3 times the width of a tile plus some gap space. 4 tiles on the top row and 2 below looks ugly */
+        flex-grow:0;
+        flex-shrink: 1;
+
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2em;
+
+    }
+        .service-tile {
+            flex-basis: 23em;
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+/*----------------------------------------------------------------------------------*/
+/*--- 6 Areas-------------------------------------------*/
+/*---- 6.1 Header-------------------------------------*/
+header {
+    background-image: linear-gradient(120deg, var(--blue), var(--chrysler));/*create background color gradient at a slight slope from top left to bottom right*/
+    color: var(--magnolia);
+}
+    /*--- navigation section */
+    nav  li {
+        color:var(--magnolia);
+        font-size: 1em;
+        list-style: none;
+        padding: 1em 2em;
+    }
+    /*--- central content block  */
+    .header-center-block p {
+        padding: 1.5em;
+    }
+    /*--- squiggle image  */
+    .header-squiggle {
+        padding-top: 3em;
+        margin-bottom: -0.5em;/*the vertical line seems to be connected to the light background of the main area*/
+    }
+/*-----  6.2 introduction ----------------------------------*/
+
+#intro-inner{
+    flex-basis: 60%;
+    text-align: center;
+    padding: 4em 0;
+}
+
+    #intro-inner h2 {
+        color: var(--chrysler);
+        line-height: 1.4em;
+        padding:0.5em 0;
+    }
+
+    #intro-inner p {
+        padding-top: 4em;
+    }
+/*----- 6.3 projects  --------------------------------------*/
+#projects {
+    background-color: var(--antiflash);
+    padding-bottom: 11em;
+}
+
+.project-image-wrapper img{
+    box-shadow: 0 1.5rem 1rem hsl(210 4% 85%);/*shadow color is the same as background  with reduced lightness*/
+}
+/*----- 6.4 services --------------------------------------*/
+#outer-services{
+    background-color: white;
+    padding-block: 5em;
+}
+
+.service-tile{
+    border: 1px solid var(--chrysler);
+    padding: 2em;
+    box-shadow: 0 1em 0.7em hsl(0 0% 90%);
+}
+
+.service-tile h4{
+    color: var(--chrysler);
+    font-size: 1.3em;
+    font-weight: 600;
+    padding-block: 0.3em;
+}
+.service-tile p {
+    color: var(--gray);
+    padding-top: 1em;
+
+}
+
+
+/*set image size of icons inside service tiles*/
+.service-tile > div {
+    width: 4em;
+}
+
+    .service-tile > div > img {
+        width: 100%;
+    }
+
+
+
+
