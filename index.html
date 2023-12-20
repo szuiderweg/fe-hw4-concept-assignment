@@ -95,7 +95,7 @@
             </section>
         </div>
 
-    <!--Services Block        -->
+        <!--Services Block        -->
         <div class="outer", id="outer-services">
             <section id="inner-services">
                 <article class="service-tile">
@@ -154,7 +154,43 @@
             </section>
 
         </div>
+
+        <!--contact form block        -->
+        <div class="outer" id="outer-form">
+            <section id="inner-form">
+                <h2>Let's work together</h2>
+
+                <p>Have a question? Need a quote? Let us know!</p>
+                <div id="form-wrapper">
+<!--                    todo remove form wrapper if not used-->
+                    <form id="contact-form" onsubmit=" ">
+                        <!--name--->
+
+                            <label for="user-name-field">Name </label>
+                                <input type="text" id="user-name-field" name="user-name" placeholder="Name"/>
+
+
+                        <!--email--->
+
+                            <label for="user-email-field">Email </label>
+                            <input type="email" id="user-email-field" name="user-email" placeholder="Email" />
+
+
+                        <!--message area--->
+
+                            <label for="user-message-field">Message</label>
+                            <textarea id="user-message-field" name="user-message" rows="5" cols="80">Message</textarea>
+
+                        <!--             submit button-->
+                        <button type="submit">send</button>
+                    </form>
+                </div>
+            </section>
+        </div>
     </main>
 
+    <footer>
+        <p> Business website opdracht &copy; NOVI Hogeschool 2022</p>
+    </footer>
 </body>
 </html>
