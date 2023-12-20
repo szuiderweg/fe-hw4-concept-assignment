@@ -1,0 +1,371 @@
+/*////////////////////////
+    Table of Contents
+	1. Imports and CSS reset
+	2. Declaration of variables
+	3. Global Styles
+	4. General typography
+	5. Reusable items
+	6. Layout
+        	6.1 General layout
+		6.2 Layout and spacing of header area
+		6.3 Layout and spacing of intro area
+		6.4 Layout and spacing of projects area
+		6.5 Layout and spacing of services area
+		6.6 Layout and spacing of contact form area
+		6.7 Layout and spacing of footer area
+	7. Styling per area
+		7.1 Styling of header area
+		7.2 Styling of intro area
+		7.3 Styling of projects area
+		7.4 Styling of services area
+		7.5 Styling of contact form area
+		7.6 Styling of footer area
+	8. Media queries
+////////////////////////*/
+
+/*-------------------------------------------------------------------------------*/
+/*----/////// 1 imports and reset-----*/
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Roboto&display=swap');  /* font Merriweather and roboto */
+
+/*CSS reset*/
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+/*---------------------------------------------------------------------------------*/
+/*---- /////////2 declaration of variables  ------*/
+:root { /* colors */
+    --chrysler: #5722CD; /* violet: heading, links */
+    --blue: #4845E4; /* blue: background header and form */
+    --rose: #ED4385; /* pink: buttons */
+    --black: #0C0C0C; /* black: standard texts */
+    --magnolia: #F2F0FF; /* very light violet: floating text, example "hello","services" except for:  */
+    --antiflash: #F3F6F9;/* light grey: projects background color */
+    --gray: #7A7A7A;/* gray: service tile text */
+}
+/*--------------------------------------------------------------------------------*/
+/*----/////// 3 Global styles  */
+        /* not used yet*/
+
+/*--------------------------------------------------------------------------------*/
+/*----///////// 4 General typography-----*/
+
+/*default font family and size*/
+html {
+    font-family: 'roboto', sans-serif;
+    font-size: 16px;
+}
+/*global type typography*/
+h1, h2, h3, h4, h4, h5, h6 {
+    font-family: 'merriweather',serif;
+}
+
+h1 {
+    font-size: 2.4em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+h3 {
+    font-size: 1.8em;
+}
+
+a {
+    color: var(--chrysler);
+    text-decoration: none;
+}
+/*-------------------------------------------------------------------------------*/
+/*---- ///////5 Reusable items*/
+button {
+    background-color: var(--rose);
+    color: var(--magnolia);
+    font-size: 0.8em;
+    text-transform: uppercase;
+    padding: 1.5em 2em;
+    border-radius: 4em;
+    border-style: none;
+    box-shadow: 0 0.5rem 0.5rem #3D188C;/* shadow color is set as the blue background color with lower brightness*/
+}
+
+/*-------------------------------------------------------------------------------*/
+/*---////////6  layout ----*/
+
+/*----- 6.1 general layout ---------------------------------------------------*/
+/*general layout strategy: each part of the page has its own set of outer-inner containers.The outer containers in row direction all belong to the outer class. The inner container belong to the various inner-classes, their properties vary per area*/
+body {
+    width: 100vw;
+}
+    /*outer container flexbox that is repeated for every area*/
+    .outer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+/*------6.2 layout and spacing of header area--------------------------------------------------*/
+.inner-header {/*inner container must fill the full width of the screen for the navigation bar*/
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 5em;
+    align-items: center;
+}
+
+    /*  move nav bar to top right inside inner container*/
+    nav {
+         align-self: flex-end;
+    }
+        nav  li {
+            padding: 1em 2em;
+        }
+
+
+    /* make the unordered list with navigation items into a flex container */
+    .inner-header ul {
+        display: flex;
+        flex-direction: row;
+    }
+        .header-center-block {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+            .header-center-block p {  /*--- central content block  */
+                padding: 1.5em;
+            }
+
+        /*--- squiggle image sizing  */
+        .header-squiggle {
+            padding-top: 3em;
+            margin-bottom: -0.5em;/*the vertical line seems to be connected to the light background of the area below*/
+        }
+/* ----6.3 Layout and spacing of intro area-------------------------------------------------------*/
+#intro-inner{
+    flex-basis: 60%;
+    text-align: center;
+    padding: 4em 0;
+}
+
+#intro-inner h2 {
+    color: var(--chrysler);
+    line-height: 1.4em;
+    padding:0.5em 0;
+}
+
+#intro-inner p {
+    padding-top: 4em;
+}
+
+/* ----6.4 Layout and spacing of project area ------------------------------------------------------*/
+#projects {
+    padding-bottom: 11em;
+}
+
+#inner-projects {
+    flex-basis: 93%;
+}
+    #inner-projects article {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-top:5em;
+    }
+    /* reverse order of elements inside even numbered articles*/
+    #inner-projects article:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+        /*project description blocks are flexboxes in column direction*/
+        .project-description {
+            display: flex;
+            flex-basis: 28%;
+            flex-grow: 0;
+            flex-shrink: 1;
+            flex-direction: column;
+            justify-content: center;
+            row-gap: 2em;
+            padding-inline: 2em;
+        }
+
+        /* project image sizing*/
+        .project-image-wrapper {
+            flex-basis: 55%;
+            flex-grow: 0;
+            flex-shrink: 1;
+        }
+            .project-image-wrapper img{
+                width: 100%;
+            }
+/*-----6.5 Layout and spacing of services area------------------------------*/
+#outer-services{
+    padding-block: 5em;
+}
+
+#inner-services {
+    flex-basis: 80em;/* fixed initial width to limit the number of tiles to 3 per row. 100 em is approximately 3 times the width of a tile plus some gap space. 4 tiles on the top row and 2 below looks ugly */
+    flex-grow:0;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+    .service-tile {
+        flex-basis: 23em;
+        flex-grow: 0;
+        flex-shrink: 0;
+        padding: 2em;
+    }
+
+        .service-tile h4{
+            padding-block: 0.3em;
+        }
+        .service-tile p {
+            padding-top: 1em;
+        }
+        /*set image size of icons inside service tiles*/
+        .service-tile > div {
+            width: 4em;
+        }
+            .service-tile > div > img {
+                width: 100%;
+            }
+
+/*---- 6.6 Layout and spacing of contact form area-----------------------------------------------*/
+
+/*container of all form related content including headers etc*/
+#inner-form {
+    flex-grow:0;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 5em;
+}
+
+    #inner-form p {
+        margin-bottom: 1em;
+    }
+    /*contains the form element*/
+    #contact-form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+    }
+        #contact-form label /* the labels for the input field are positioned to the left of the container*/
+        {
+            align-self: flex-start;
+            padding-top:1em;
+        }
+
+        #contact-form input{
+            padding: 1em;
+        }
+
+        #contact-form textarea{
+            padding: 1em;
+        }
+
+        #contact-form button{
+            align-self: center;
+            padding-left: 5em;
+            padding-right: 5em;
+            margin-top:2em;
+            margin-bottom: 3em;
+        }
+
+/*--- 6.7 Layout and spacing of footer area------------- --------      */
+footer{
+    width: 100%;
+    text-align: center;
+    padding: 1.5em;
+}
+
+/*----------------------------------------------------------------------------------*/
+/*--- 7 Styling per area------------------------------------------------------------*/
+
+/*---- 7.1 Styling of header area-------------------------------------*/
+header {
+    background-image: linear-gradient(120deg, var(--blue), var(--chrysler));/*create background color gradient at a slight slope from top left to bottom right*/
+    color: var(--magnolia);
+}
+    /*--- navigation section */
+    nav  li {
+        color:var(--magnolia);
+        font-size: 1em;
+        list-style: none;
+    }
+/*-----  7.2 Styling of intro area ----------------------------------------------------*/
+#intro-inner h2 {
+    color: var(--chrysler);
+}
+/*----- 7.3 Styling of projects area ---------------------------------------------------*/
+#projects {
+    background-color: var(--antiflash);
+}
+
+.project-image-wrapper img{
+    box-shadow: 0 1.5rem 1rem hsl(210 4% 85%);/*shadow color is the same as background  with reduced lightness*/
+}
+/*----- 7.4 Styling of services area--------------------------------------*/
+#outer-services{
+    background-color: white;
+}
+
+    .service-tile{
+        border: 1px solid var(--chrysler);
+        box-shadow: 0 1em 0.7em hsl(0 0% 90%);
+    }
+
+        .service-tile h4{
+            color: var(--chrysler);
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        .service-tile p {
+            color: var(--gray);
+        }
+
+/*----7.5 Styling of form area  -------------------------------------- */
+#outer-form {
+    background-image: linear-gradient(120deg, var(--blue), var(--chrysler));/*create background color gradient at a slight slope from top left to bottom right*/
+    color: var(--magnolia);
+}
+
+ #inner-form h2 {
+        font-size: 2.4em;
+        line-height: 2em;
+    }
+
+    #inner-form p {
+        font-size: 1em;
+    }
+
+        #contact-form label
+        {
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+    #contact-form textarea{
+        color: var(--gray);
+        font-family: 'roboto', sans-serif;
+        font-size: 0.9em;
+    }
+
+/*---- 7.6 Styling of footer area ---------------------------  */
+footer{
+    background-color: var(--black);
+    color: white;
+}
+
+/*----------------------------------------------------------------------------------*/
+/*---todo 8 Media queries for mobile version---------------------------------------------*/
